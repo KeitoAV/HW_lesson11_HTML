@@ -11,7 +11,7 @@
 
 <h1>Найдено со скиллом - {{ skill_ }}</h1>
 {% for candidate in candidates %}
-<p><a href="/candidate/<skill_name>">{{ candidate.name }}</a></p>
+<p><a href="/candidate/{{ candidate.id }}">{{ candidate.name }}</a></p>
 {% endfor %}
 
 </body>

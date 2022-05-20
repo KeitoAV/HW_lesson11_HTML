@@ -11,7 +11,7 @@ def page_all_candidate():
     return render_template('list.html', candidates=candidate)
 
 
-@app.route('/candidate/<int:candidate_id>')
+@app.route('/candidate/<int:candidate_id>/')
 def page_single_candidate(candidate_id):
     """Выводим на страницу кандидата по id"""
     candidate = utils.get_candidate(candidate_id)
@@ -22,7 +22,7 @@ def page_single_candidate(candidate_id):
     return render_template('single.html', candidates=candidate)
 
 
-@app.route('/search/<candidate_name>')
+@app.route('/search/<candidate_name>/')
 def get_candidates_by_name(candidate_name):
     """Выводим на страницу кандидатов, в имени у которых содержится candidate_name"""
     candidate = utils.get_candidates_by_name(candidate_name)
@@ -34,7 +34,7 @@ def get_candidates_by_name(candidate_name):
     return render_template('search.html', candidates=candidate, all_=all)
 
 
-@app.route('/skill/<skill_name>')
+@app.route('/skill/<skill_name>/')
 def get_candidates_by_skill(skill_name):
     """Выводим на страницу кандидатов по skills"""
     candidate = utils.get_candidates_by_skill(skill_name)
