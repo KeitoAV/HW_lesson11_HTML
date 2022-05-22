@@ -5,14 +5,14 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def page_all_candidate():
+def page_list():
     """Выводим на страницу всех кандидатов"""
     candidate = utils.load_candidates_from_json()
     return render_template('list.html', candidates=candidate)
 
 
 @app.route('/candidate/<int:candidate_id>/')
-def page_single_candidate(candidate_id):
+def page_single(candidate_id):
     """Выводим на страницу кандидата по id"""
     candidate = utils.get_candidate(candidate_id)
 
@@ -23,7 +23,7 @@ def page_single_candidate(candidate_id):
 
 
 @app.route('/search/<candidate_name>/')
-def get_candidates_by_name(candidate_name):
+def page_search_by_name(candidate_name):
     """Выводим на страницу кандидатов, в имени у которых содержится candidate_name"""
     candidate = utils.get_candidates_by_name(candidate_name)
     all = len(candidate)
@@ -35,15 +35,15 @@ def get_candidates_by_name(candidate_name):
 
 
 @app.route('/skill/<skill_name>/')
-def get_candidates_by_skill(skill_name):
+def page_candidates_by_skill(skill_name):
     """Выводим на страницу кандидатов по skills"""
     candidate = utils.get_candidates_by_skill(skill_name)
     skill = skill_name
-
+    all = len(candidate)
     if len(candidate) == 0:
         return 'Кандидаты c такими навыками не найдены.'
 
-    return render_template('skill.html', candidates=candidate, skill_=skill)
+    return render_template('skill.html', candidates=candidate, skill_=skill, all_=all)
 
 
 if __name__ == '__main__':
